@@ -1,15 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import { EmpService } from '../emp.service';
+
+import { Emp } from 'Emp';
 
 @Component({
   selector: 'app-logemp',
   templateUrl: './logemp.component.html',
   styleUrls: ['./logemp.component.css']
 })
-export class LogempComponent implements OnInit {
+export class LogempComponent {
 
-  constructor() { }
+  emp=[];
+  constructor(private empservice:EmpService) { 
 
-  ngOnInit() {
   }
 
+  handleFormData(form){
+    
+    let emp:Emp=new Emp("sravani","sravani");
+    this.empservice.addEmp(emp);
+  }
+  
 }

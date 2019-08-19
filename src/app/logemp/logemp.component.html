@@ -16,7 +16,10 @@
       <br>
       
       <div class="form-group">
-        <button type="submit" class="btn btn-success">Login</button>
+          <a class="nav-link" 
+          [routerLink]="['/emphome']" 
+          routerLinkActive="router-link-active" ><button type="submit" class="btn btn-primary btn-lg" >Login</button></a>      
+
         <span class="text-danger" style="color:red">{{ error }}</span>
       </div>
 
