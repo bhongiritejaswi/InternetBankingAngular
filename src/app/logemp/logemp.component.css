@@ -1,5 +1,6 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
-
-body{
-    background-size: cover;
+.container{
+    width: 600px;
+    left: 25%;
+    margin: 0 auto;
 }

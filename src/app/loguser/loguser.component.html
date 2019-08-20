@@ -1,25 +1,50 @@
-<div class="col-md-12">
-  <p><strong>Login Page</strong></p>
-  
-  <form ng-submit="formSubmit()" class="form">
-    <div class="col-md-4">
-      <div class="form-group">
-        <input type="text" class="form-control" ng-model="username" placeholder="username" required=""/>
-      </div> 
-
-      <br>
-
-      <div class="form-group">
-        <input type="password" class="form-control" ng-model="password" placeholder="password" required=""/>
+<div class="container">
+    <br>
+  <form ngForm #form = "ngForm" 
+  (ngSubmit)="handleFormData(form)">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="name"><h5>User Name</h5></label>
+          <input 
+              type="text" 
+              ngModel 
+              required
+              minlength="5"
+              maxlength="8"
+              #customerName="ngModel"
+              name="name"
+              class="form-control" 
+              id="name" 
+              aria-describedby="name" 
+              placeholder="Enter user name">
+        </div>
+        <div class="alert alert-danger" *ngIf="customerName.touched && customerName.invalid">
+            <span *ngIf="customerName.errors.required">Usename field is required</span>
+            <span *ngIf="customerName.errors.minlength">
+              Username field is required -
+               {{customerName.errors.minlength.requiredLength - customerName.errors.minlength.actualLength}}</span>
+        </div>
+        <div class="form-group">
+          <label for="pass"><h5>Password</h5></label>
+          <input 
+              type="password" 
+              class="form-control" 
+              name="pass"
+              required 
+              ngModel 
+              #pass = "ngModel"
+              id="pass" placeholder="Enter your Password">
+        </div>
+        <div class="alert alert-danger" *ngIf="pass.touched && pass.invalid">
+            <span>Password is mandatory</span>
+        </div>
+        <a  [routerLink]="['/customer-dashboard']" 
+        routerLinkActive="router-link-active"  ><button 
+              type="submit" 
+              [disabled]="form.invalid"
+              class="btn btn-primary">Submit</button></a>
+          </div>
       </div>
-
-      <br>
-      
-      <div class="form-group">
-        <button type="submit" class="btn btn-success">Login</button>
-        <span class="text-danger" style="color:red">{{ error }}</span>
-      </div>
-
-    </div>
   </form>
-</div>
+  </div>

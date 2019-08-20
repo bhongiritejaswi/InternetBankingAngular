@@ -14,6 +14,11 @@ import { RegisterComponent } from './register/register.component';
 import { EmphomeComponent } from './emphome/emphome.component';
 import { DelaccComponent } from './delacc/delacc.component';
 import { CustomerDashboardComponent } from './customer-dashboard/customer-dashboard.component';
+import { CustlistofaccsComponent } from './custlistofaccs/custlistofaccs.component';
+import { CustfundtransferComponent } from './custfundtransfer/custfundtransfer.component';
+import { CusttranshistoryComponent } from './custtranshistory/custtranshistory.component';
+import { FundTransferSameaccComponent } from './fund-transfer-sameacc/fund-transfer-sameacc.component';
+import { FundTransferOtheraccComponent } from './fund-transfer-otheracc/fund-transfer-otheracc.component';
 
 
 @NgModule({
@@ -28,7 +33,12 @@ import { CustomerDashboardComponent } from './customer-dashboard/customer-dashbo
     RegisterComponent,
     EmphomeComponent,
     DelaccComponent,
-    CustomerDashboardComponent
+    CustomerDashboardComponent,
+    CustlistofaccsComponent,
+    CustfundtransferComponent,
+    CusttranshistoryComponent,
+    FundTransferSameaccComponent,
+    FundTransferOtheraccComponent,
      
   ],
   imports: [
@@ -42,7 +52,18 @@ import { CustomerDashboardComponent } from './customer-dashboard/customer-dashbo
       },
       {
         path:'home',
-        component:HomeComponent
+        component:HomeComponent,
+        children:[
+          {
+            path:'logemp',
+            component:LogempComponent
+          },
+          {
+            path:'loguser',
+            component:LoguserComponent
+          }
+
+        ]
       },
       {
         path:'services',
@@ -51,26 +72,47 @@ import { CustomerDashboardComponent } from './customer-dashboard/customer-dashbo
       {
         path:'help',
         component:HelpComponent
-      },
-      {
-        path:'logemp',
-        component:LogempComponent
-      },
-      {
-        path:'loguser',
-        component:LoguserComponent
-      },
-      {
-        path:'register',
-        component:RegisterComponent
-      },
+      },      
       {
         path:'emphome',
-        component:EmphomeComponent
+        component:EmphomeComponent,
       },
+          {
+            path:'register',
+            component:RegisterComponent
+          },
+          {
+            path:'deleteaccount',
+            component:DelaccComponent
+          },
+      
       {
-        path:'deleteaccount',
-        component:DelaccComponent
+        path:'customer-dashboard',
+        component:CustomerDashboardComponent,
+        children:[
+          {
+            path:'custfundtransfer',
+            component:CustfundtransferComponent,
+            children:[
+              {
+                path:'fund-transfer-sameacc',
+                component:FundTransferSameaccComponent
+              },
+              {
+                path:'fund-transfer-otheracc',
+                component:FundTransferOtheraccComponent
+              }
+            ]
+          },
+          {
+            path:'custlistofaccs',
+            component:CustlistofaccsComponent
+          },
+          {
+            path:'custtranshistory',
+            component:CusttranshistoryComponent
+          }
+        ]
       },
       {
         path:'**',
